@@ -22,6 +22,8 @@ Amazing 二进制混淆器，支持混淆 ShellCode，甚至支持混淆 EXE 中
 
 ![1.png (422×335)](https://raw.githubusercontent.com/HackerCalico/RAT_Obfuscator/refs/heads/main/Image/1.png)
 
+(4) 仅支持混淆纯指令型机器码。
+
 <mark>指令存储顺序完全随机打乱，间隙填充随机 Garbage (大概率生成混淆 jmp)。</mark>
 
 <mark>指令执行顺序通过 jmp 串联。</mark>
