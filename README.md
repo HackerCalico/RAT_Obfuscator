@@ -123,30 +123,30 @@ Please enter path: func.txt
 
 ```bash
 混淆后
-———————————————————— Garbage 包含 jmp
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
+———————————————————— Garbage 包含混淆 jmp
 1 ret
   jmp 6
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 2 ret
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 ———————————————————— Garbage
 3 mov rax, 0x1
   jmp 1
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 4 mov rax, 0x3
   jmp 7
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 5 call 3
   jmp 2
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 6 mov rax, 0x2
   jmp 4
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
 7 jmp 5
   jmp 5
-———————————————————— Garbage 包含 jmp
-———————————————————— Garbage 包含 jmp
+———————————————————— Garbage 包含混淆 jmp
+———————————————————— Garbage 包含混淆 jmp
 ```
 
 <mark>具体实现请看代码，下面对混淆流程进行简要概括：</mark>
