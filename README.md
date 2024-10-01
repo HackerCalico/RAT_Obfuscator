@@ -89,7 +89,7 @@ memcpy(p, buf, sizeof(buf));
 ![3.png (724×179)](https://raw.githubusercontent.com/HackerCalico/RAT_Obfuscator/refs/heads/main/Image/3.png)
 
 ```bash
-> Obfuscator.py
+> python Obfuscator.py
 1.混淆 ShellCode
 2.混淆 EXE 函数
 选择: 2
