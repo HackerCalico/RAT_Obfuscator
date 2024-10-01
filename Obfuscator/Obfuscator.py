@@ -99,8 +99,8 @@ def ObfShellCode(shellcode, isShellCode=True):
         print()
         print('以上按照 "执行顺序" 输出了指令信息.\n'
               '如果你的 ShellCode 只有一个函数, 那么混淆后的 ShellCode 的调用地址即为 "执行顺序" 第一条指令的 start(乱序后指令首地址).\n'
-              '如果有多个函数, 请自行找到调用地址. 比如本项目样例有两个函数, 可以通过 ctrl+F 快速定位到第一个函数结尾的 ret 以及下方的 int3,'
-              '\n而 int3 之后的 mov qword ptr [rsp + 8], rcx 即为第二个函数的第一条指令, 其 start 即为调用地址.')
+              '如果有多个函数, 请自行找到调用地址. 比如本项目样例有两个函数, 可以通过 ctrl+F 快速定位到第一个函数结尾的 ret 以及下方的 int3,\n'
+              '而 int3 之后的 mov qword ptr [rsp + 8], rcx 即为第二个函数的第一条指令, 其 start 即为调用地址.')
         start = input('\033[94m' + 'Please enter start: ' + '\033[0m')
         print()
         print('\033[92m' + '[+] 测试代码(本项目样例参数):' + '\033[0m')
