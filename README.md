@@ -104,7 +104,7 @@ Please enter path: func.txt
 
 (1) 为了防止杀软通过栈回溯定位到机器码，请自行编写欺骗函数来调用 Windows Api。
 
-(2) EXE 函数混淆后，顶部会有一个 jmp，如果你发现函数上方还有多余的空间，请自行补充一些 Garbage 来掩护 jmp。
+(2) EXE 函数混淆后，顶部会有一个 jmp，如果你发现函数上方还有多余的空间，请自行填充一些 Garbage 来掩护 jmp。
 
 ![4.png (724×88)](https://raw.githubusercontent.com/HackerCalico/RAT_Obfuscator/refs/heads/main/Image/4.png)
 
