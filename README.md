@@ -6,6 +6,8 @@
 
 ### 1. 介绍
 
+当前正在进行大调整，混淆思路会发生变化。
+
 https://github.com/HackerCalico/RAT_Obfuscator
 
 Amazing 二进制混淆器，支持混淆 ShellCode，甚至支持混淆 EXE 中的函数机器码。
