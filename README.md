@@ -7,7 +7,7 @@
 ### 1. 介绍
 
 ### 当前正在进行大调整，不再使用全jmp思路，而是将所有指令等效替换为常见指令。
-### 过几天更新，仍然是支持混淆 ShellCode & EXE 函数。
+### 过几天更新，将支持混淆 ShellCode & EXE 函数 & BOF。
 
 https://github.com/HackerCalico/RAT_Obfuscator
 
