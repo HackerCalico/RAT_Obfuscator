@@ -200,7 +200,7 @@ def ObfOps(obfAsms):
 
 def EquReplace(instruction):
     mnemonic, ops, opType1, opType2 = GetAsmInfo(instruction)
-    print('\nBefore: \n' + '\033[94m' + instruction + '\033[0m')
+    print('\nOriginal: \n' + '\033[94m' + instruction + '\033[0m')
 
     if 'rip' in instruction:
         return instruction
