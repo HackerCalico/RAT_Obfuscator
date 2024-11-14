@@ -200,7 +200,7 @@ def ObfOps(obfAsms):
 
 def EquReplace(instruction):
     mnemonic, ops, opType1, opType2 = GetAsmInfo(instruction)
-    print('\nOriginal: \n' + '\033[94m' + instruction + '\033[0m')
+    print('\nOriginal:\n' + '\033[94m' + instruction + '\033[0m')
 
     if 'rip' in instruction:
         return instruction
@@ -216,10 +216,10 @@ def EquReplace(instruction):
 
     # 原指令 -> 操作数易变形的指令序列
     obfAsms = ObfMnemonic(mnemonic, ops, opType1, opType2, instruction)
-    print('ObfMnemonic: \n' + '\033[95m' + obfAsms + '\033[0m')
+    print('ObfMnemonic:\n' + '\033[95m' + obfAsms + '\033[0m')
     # 混淆操作数
     obfAsms = ObfOps(obfAsms)
-    print('ObfOps: \n' + '\033[93m' + obfAsms + '\033[0m')
+    print('ObfOps:\n' + '\033[93m' + obfAsms + '\033[0m')
 
     if instruction in obfAsms and not (mnemonic == 'xor' and ops[0] == ops[1]): # xor r, r 混淆后不变是可接受的
         global cannotObf
