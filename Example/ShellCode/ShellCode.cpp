@@ -15,10 +15,10 @@
 
 using namespace std;
 
-#pragma code_seg(".shell")
+PBYTE GetMessageBoxA(PBYTE pUser32, PIMAGE_EXPORT_DIRECTORY pExportDir);
 
 // 保证 MyMessageBoxA 在 .shell 置顶
-PBYTE GetMessageBoxA(PBYTE pUser32, PIMAGE_EXPORT_DIRECTORY pExportDir);
+#pragma code_seg(".shell")
 
 void MyMessageBoxA(PBYTE pUser32) {
     PIMAGE_DOS_HEADER pDos = (PIMAGE_DOS_HEADER)pUser32;
