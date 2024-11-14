@@ -14,7 +14,7 @@ Magical 二进制混淆器，支持混淆 x64 的 EXE、BOF、ShellCode。
 
 ### 2. 效果 & 优势
 
-(1) 不存在自解密等任何加解密操作，所以无需 RWX。如果是 ShellCode，混淆后可直接通过内联汇编调用，无需申请内存。
+(1) 不存在自解密等任何加解密操作，所以无需 RWX。如果是 ShellCode，混淆后可直接通过内联汇编调用，无需进行任何内存操作。
 
 (2) 逐条指令混淆，先将所有汇编指令等效替换为随机生成的等效指令序列，再随机分片打乱。保证每次混淆结果截然不同，并且不会额外添加混淆器特有的函数。
 
@@ -171,23 +171,23 @@ Instruction: mov rax, rcx
 
 1th obfuscate:
 
-Before: 
+Original:
 mov rax, rcx
-ObfMnemonic: 
+ObfMnemonic:
 xor rax, rax
 xor rax, rcx
-ObfOps: 
+ObfOps:
 xor rax, rax
 xor rax, rcx
 ....
 10th obfuscate:
 
-Before: 
+Original:
 mov rax, rcx
-ObfMnemonic: 
+ObfMnemonic:
 mov rax, 0
 add rax, rcx
-ObfOps: 
+ObfOps:
 mov rax, 0xab
 push rbx
 mov rbx, rax
