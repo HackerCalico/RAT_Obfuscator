@@ -28,7 +28,7 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
     BYTE needReloc = *(PBYTE)(pPayload + 8);
     *(PBYTE)(pPayload + 8) = 0x00;
     XorData(pPayload, 9, xor1, xor2);
-    if (payloadSize < rdataLen + obfCodeLen + importInfoListLen + bofFuncOffsetMapLen + 11) {
+    if (payloadSize != rdataLen + obfCodeLen + importInfoListLen + bofFuncOffsetMapLen + 11) {
         return 0;
     }
     PBYTE pImportInfoList = pPayload + 9;
