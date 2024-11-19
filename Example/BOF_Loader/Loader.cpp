@@ -8,8 +8,8 @@ int impFuncNum = 0;
 LONGLONG* impFuncHashList = NULL;
 PDWORD_PTR impFuncAddrList = NULL;
 
-__declspec(noinline) int GetHash(char* string, int length);
-__declspec(noinline) void XorData(PBYTE data, int dataLength, BYTE xor1, BYTE xor2);
+__declspec(noinline) int GetHash(char* str, int len);
+__declspec(noinline) void XorData(PBYTE data, int dataLen, BYTE xor1, BYTE xor2);
 
 // ±£Ö¤ RunPayload ÔÚ .func ÖÃ¶¥
 #pragma code_seg(".func")
@@ -182,17 +182,17 @@ int RunPayload(PBYTE pPayload, int payloadSize, int bofFuncHash, char* commandPa
     return 1;
 }
 
-__declspec(noinline) int GetHash(char* string, int length) {
+__declspec(noinline) int GetHash(char* str, int len) {
     int hash = 0;
-    for (int i = 0; i < length; i++) {
-        hash += string[i];
+    for (int i = 0; i < len; i++) {
+        hash += str[i];
         hash = (hash << 8) - hash;
     }
     return hash;
 }
 
-__declspec(noinline) void XorData(PBYTE data, int dataLength, BYTE xor1, BYTE xor2) {
-    for (int i = 0; i < dataLength; i++) {
+__declspec(noinline) void XorData(PBYTE data, int dataLen, BYTE xor1, BYTE xor2) {
+    for (int i = 0; i < dataLen; i++) {
         data[i] = data[i] ^ xor1 ^ xor2;
     }
 }
